@@ -9,12 +9,21 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Modal from 'react-native-modal';
+import {MainNavigatorParamsList} from '../../navigation/RootNavigator/types';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-const ActiveAmulet: React.FC = () => {
+export interface ActiveAmuletProps {
+  navigation: NativeStackNavigationProp<
+    MainNavigatorParamsList,
+    'ActiveAmulet'
+  >;
+}
+
+const ActiveAmulet: React.FC<ActiveAmuletProps> = ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [active, setActive] = useState(false);
   const goBack = () => {
-    //
+    navigation.navigate('AmuletsScreen');
   };
 
   const handlePress = () => {

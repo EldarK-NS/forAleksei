@@ -3,12 +3,15 @@ import {View} from 'react-native';
 import {useRoute} from '@react-navigation/core';
 import {WebView} from 'react-native-webview';
 import * as Progress from 'react-native-progress';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {MainNavigatorParamsList} from '../../navigation/RootNavigator/types';
 
-const WebScreen: React.FC = () => {
+type Props = NativeStackScreenProps<MainNavigatorParamsList, 'WebScreen'>;
+
+const WebScreen: React.FC<Props> = () => {
   const [progress, setProgress] = useState(0);
   const [isLoaded, setLoaded] = useState(false);
-  const route = useRoute();
-  const link = route.params;
+
   return (
     <View>
       <View style={{width: '100%', height: '100%'}}>
@@ -23,7 +26,7 @@ const WebScreen: React.FC = () => {
         ) : null}
         <WebView
           source={{
-            uri: `${link.data}`,
+            uri: `https://www.google.com/`,
           }}
           onLoadProgress={({nativeEvent}) => setProgress(nativeEvent.progress)}
           onLoadEnd={() => setLoaded(true)}

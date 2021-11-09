@@ -7,14 +7,20 @@ import {
   Pressable,
   Image,
 } from 'react-native';
+import {MainNavigatorParamsList} from '../../navigation/RootNavigator/types';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-const AmuletsScreen: React.FC = () => {
+export interface AmuletsScreenProps {
+  navigation: NativeStackNavigationProp<MainNavigatorParamsList, 'Home'>;
+}
+
+const AmuletsScreen: React.FC<AmuletsScreenProps> = ({navigation}) => {
   const goBack = () => {
-    //
+    navigation.navigate('Home');
   };
 
   const handlePress = () => {
-    //
+    navigation.navigate('ActiveAmulet');
   };
 
   return (

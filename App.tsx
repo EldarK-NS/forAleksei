@@ -10,14 +10,16 @@
 
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {AmuletsScreen, Home, ActiveAmulet} from './src/screens';
+import {NavigationContainer} from '@react-navigation/native';
+import {RootNavigator} from './src/navigation/RootNavigator/RootNavigator';
 
 const App: React.FC = () => {
   return (
-    <View style={styles.container}>
-      {/* <Home /> */}
-      <ActiveAmulet />
-    </View>
+    <NavigationContainer>
+      <View style={styles.container}>
+        <RootNavigator />
+      </View>
+    </NavigationContainer>
   );
 };
 

@@ -8,10 +8,16 @@ import {
   Image,
   Pressable,
 } from 'react-native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {MainNavigatorParamsList} from '../../navigation/RootNavigator/types';
 
-const Home: React.FC = () => {
+export interface HomeProps {
+  navigation: NativeStackNavigationProp<MainNavigatorParamsList, 'Home'>;
+}
+
+const Home: React.FC<HomeProps> = ({navigation}) => {
   const handlePress = () => {
-    //
+    navigation.navigate('AmuletsScreen');
   };
   return (
     <View style={styles.container}>
@@ -41,7 +47,7 @@ const Home: React.FC = () => {
             resizeMode="contain"
           />
         </View>
-        <Pressable onPress={() => console.log('object')}>
+        <Pressable onPress={() => navigation.navigate('WebScreen')}>
           <Text style={styles.policy}>Политика конфиденциальности</Text>
         </Pressable>
       </ImageBackground>
