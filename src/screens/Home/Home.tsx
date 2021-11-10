@@ -7,18 +7,16 @@ import {
   TouchableOpacity,
   Image,
   Pressable,
+  FlatList,
 } from 'react-native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {MainNavigatorParamsList} from '../../navigation/RootNavigator/types';
-
+import {categories} from '../../assets/data';
 export interface HomeProps {
   navigation: NativeStackNavigationProp<MainNavigatorParamsList, 'Home'>;
 }
 
 const Home: React.FC<HomeProps> = ({navigation}) => {
-  const handlePress = () => {
-    navigation.navigate('AmuletsScreen');
-  };
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -27,18 +25,18 @@ const Home: React.FC<HomeProps> = ({navigation}) => {
         style={styles.image}>
         <Text style={styles.title}>В чем Вы нуждаетесь?</Text>
         <View style={styles.blocksWrapper}>
-          <TouchableOpacity style={styles.blocks} onPress={handlePress}>
-            <Text style={styles.block_text}>Защита</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.blocks} onPress={handlePress}>
-            <Text style={styles.block_text}>Удача</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.blocks} onPress={handlePress}>
-            <Text style={styles.block_text}>Любовь</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.blocks} onPress={handlePress}>
-            <Text style={styles.block_text}>Сила</Text>
-          </TouchableOpacity>
+          <FlatList
+            data={categories}
+            renderItem={({item}) => (
+              <TouchableOpacity
+                style={styles.blocks}
+                onPress={() =>
+                  navigation.navigate('AmuletsScreen', {id: item.id})
+                }>
+                <Text style={styles.block_text}>{item.name}</Text>
+              </TouchableOpacity>
+            )}
+          />
         </View>
         <View style={{width: '100%', alignItems: 'center'}}>
           <Image

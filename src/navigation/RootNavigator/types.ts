@@ -1,6 +1,6 @@
 export type MainNavigatorParamsList = {
   Home: undefined;
-  ActiveAmulet: undefined;
+  ActiveAmulet: {id: number};
   AmuletsScreen: undefined;
   WebScreen: undefined;
 };
